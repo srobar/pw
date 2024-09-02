@@ -9,7 +9,6 @@
   <body>
     <button onclick="subscribe()">Subscribe</button>
     <button onclick="unsubscribe()">Unsubscribe and Remove Service Worker</button>
-    <div id="endpoint"></div>
     
     <script>
       async function subscribe() {
@@ -20,13 +19,10 @@
             'BJaq_WIn8SM_dAHNSBbHaUBpFaiXeg5bjABZSWcBa1zBgONiN2z6StcyGLF5Vtnq0SGdPA8Afx2TXX1FM3DkjTU'
         });
 
-        const pushSubscriptionJson = JSON.stringify(push);
-
-        document.getElementById('endpoint').textContent = pushSubscriptionJson;
-        console.log(pushSubscriptionJson);
+        console.log(push);
 
         try {
-          await navigator.clipboard.writeText(pushSubscriptionJson);
+          await navigator.clipboard.writeText(JSON.stringify({ endpoint: push.endpoint, p256dh: push.keys.p256dh, auth: push.keys.auth }));
           console.log('Push subscription copied to clipboard!');
         } catch (err) {
           console.error('Failed to copy to clipboard:', err);
@@ -61,8 +57,6 @@
           await indexedDB.deleteDatabase(db.name);
           console.log('IndexedDB deleted:', db.name);
         }
-
-        document.getElementById('endpoint').textContent = 'Unsubscribed and Service Worker removed.';
       }
 
       if ('serviceWorker' in navigator) {
