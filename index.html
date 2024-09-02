@@ -20,9 +20,17 @@
             'BJaq_WIn8SM_dAHNSBbHaUBpFaiXeg5bjABZSWcBa1zBgONiN2z6StcyGLF5Vtnq0SGdPA8Afx2TXX1FM3DkjTU'
         });
 
-        document.getElementById('endpoint').textContent = JSON.stringify(push);
-        navigator.clipboard.write(JSON.stringify(push));
-        console.log(push);
+        const pushSubscriptionJson = JSON.stringify(push);
+
+        document.getElementById('endpoint').textContent = pushSubscriptionJson;
+        console.log(pushSubscriptionJson);
+
+        try {
+          await navigator.clipboard.writeText(pushSubscriptionJson);
+          console.log('Push subscription copied to clipboard!');
+        } catch (err) {
+          console.error('Failed to copy to clipboard:', err);
+        }
       }
 
       async function unsubscribe() {
