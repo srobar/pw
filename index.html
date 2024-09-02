@@ -8,7 +8,7 @@
   </head>
   <body>
     <button onclick="subscribe()">Subscribe</button>
-
+    <div id="endpoint"></div>
     <script>
       async function subscribe() {
         let sw = await navigator.serviceWorker.ready;
@@ -17,6 +17,8 @@
           applicationServerKey:
             'BJaq_WIn8SM_dAHNSBbHaUBpFaiXeg5bjABZSWcBa1zBgONiN2z6StcyGLF5Vtnq0SGdPA8Afx2TXX1FM3DkjTU'
         });
+
+        document.getElementById('endpoint').textContent = JSON.stringify(push);
         console.log(JSON.stringify(push));
       }
 
