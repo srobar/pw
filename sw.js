@@ -10,12 +10,12 @@ self.addEventListener('push', function(event) {
     }
   
     const options = {
-      body: data.text || 'Default body text',
+      body: data.body || 'Default body text',
       icon: 'path/to/icon.png', 
       badge: 'path/to/badge.png'
     };
   
     event.waitUntil(
-      self.registration.showNotification('Notification Title', options)
+      self.registration.showNotification(data.title, options)
     );
   });
