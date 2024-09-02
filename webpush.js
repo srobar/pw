@@ -13,14 +13,14 @@ webpush.setVapidDetails(
 );
 
 // android mobil
-const pushSubscription = {
-    endpoint: "https://fcm.googleapis.com/fcm/send/fj_BKm7Y9eA:APA91bHSm8rzG9s_QkFmafU_ZENfmXlqUuoPgUrPuFMljQISyWs7Kdza8Ef-4cqzWUmw6bYaHy5vFmx31iwFOgTxOR5YRIDHIjYc_l0zu-f3JTVrZ6TbhroFqHURPYvUshfN3BNx3xHD",
-    expirationTime: null,
-    keys: {
-        p256dh: "BBfzNvhVBxB71ZzBdO1HnfDvoyS27NSEPOCOPRySwSVZyxvp1lE428yUrIvJJglw2a3hw3KewySBe1AaTSb2AAY",
-        auth: "GRVXYazyuvyNpQtkdzX4VQ"
-    }
-};
+// const pushSubscription = {
+//     endpoint: "https://fcm.googleapis.com/fcm/send/fj_BKm7Y9eA:APA91bHSm8rzG9s_QkFmafU_ZENfmXlqUuoPgUrPuFMljQISyWs7Kdza8Ef-4cqzWUmw6bYaHy5vFmx31iwFOgTxOR5YRIDHIjYc_l0zu-f3JTVrZ6TbhroFqHURPYvUshfN3BNx3xHD",
+//     expirationTime: null,
+//     keys: {
+//         p256dh: "BBfzNvhVBxB71ZzBdO1HnfDvoyS27NSEPOCOPRySwSVZyxvp1lE428yUrIvJJglw2a3hw3KewySBe1AaTSb2AAY",
+//         auth: "GRVXYazyuvyNpQtkdzX4VQ"
+//     }
+// };
 
 // chrome pc
 // const pushSubscription = {endpoint:"https://fcm.googleapis.com/fcm/send/dGdAQTLxT1w:APA91bF_Pvl2cTIQfIJfADuDnxCTKzQUVyTHyCCz2-K-UVeBOInAK5UBkPokGKF4FYdst9HSIvHjcvYkk9dVpBpMEiWfKzEgVkJGnuz2fiZyjBk1LFBOxCJmSXGewGn-Sj0gemzlVCnX",expirationTime:null,keys:{p256dh:"BFrj0tMM-UDkZRDUjDMh0uN8NkuuHSGjaHlophCeVNi88KTfOqo_FxmwLypL1ctZUoC81SFXfBu8J8HYBEG-eVU",auth:"HjbtVRkJkidR8hxPbHW8ew"}}
@@ -30,5 +30,7 @@ const pushSubscription = {
 
 // mrp xiaomi
 // const pushSubscription = {endpoint:"https://fcm.googleapis.com/fcm/send/dNGliiVoxtc:APA91bHnbqti_cmoX2sTL8-phaAnlx0iyjybm1aP9ItmYyUNDV7LA3e9DzitvkTCWp6gNgdVBPF4D7B-QAlCo8coPhIXjKPUGmmc8ZBKIug07YDnh03tmkUzuUqoqTjc5gECrOTdxGCM",expirationTime:null,keys:{p256dh:"BM9QtVExBl3DeSsj8mDyaCnYMKM6a9R6G9P_xMl9bZTvzvmzNrYp01RgoHIRHBkWQw3UwFNat-es_U8DMtYi478",auth:"tkXOnBqSXBnGyPdQG7J2Gw"}}
+
+const pushSubscription = {endpoint:"https://fcm.googleapis.com/fcm/send/dGdAQTLxT1w:APA91bF_Pvl2cTIQfIJfADuDnxCTKzQUVyTHyCCz2-K-UVeBOInAK5UBkPokGKF4FYdst9HSIvHjcvYkk9dVpBpMEiWfKzEgVkJGnuz2fiZyjBk1LFBOxCJmSXGewGn-Sj0gemzlVCnX",expirationTime:null,keys:{p256dh:"BFrj0tMM-UDkZRDUjDMh0uN8NkuuHSGjaHlophCeVNi88KTfOqo_FxmwLypL1ctZUoC81SFXfBu8J8HYBEG-eVU",auth:"HjbtVRkJkidR8hxPbHW8ew"}}
 
 webpush.sendNotification(pushSubscription, 'Your Push Payload Text');
