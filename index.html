@@ -11,6 +11,7 @@
     <button onclick="subscribe()">Subscribe</button>
     <button onclick="unsubscribe()">Unsubscribe and Remove Service Worker</button>
     
+    <div id="endpoint"></div>
     <script>
       async function subscribe() {
         let sw = await navigator.serviceWorker.ready;
@@ -20,11 +21,12 @@
             'BJaq_WIn8SM_dAHNSBbHaUBpFaiXeg5bjABZSWcBa1zBgONiN2z6StcyGLF5Vtnq0SGdPA8Afx2TXX1FM3DkjTU'
         });
 
+        document.getElementById('endpoint').textContent = JSON.stringify(push)
         console.log(push);
 
         try {
           await navigator.clipboard.writeText(JSON.stringify(push));
-          console.log('Push subscription copied to clipboard!');
+          alert('Push subscription copied to clipboard!');
         } catch (err) {
           console.error('Failed to copy to clipboard:', err);
         }
@@ -37,6 +39,7 @@
         if (subscription) {
           await subscription.unsubscribe();
           console.log('Successfully unsubscribed from push notifications.');
+          document.getElementById('endpoint').textContent = "Successfully unsubscribed from push notifications. Reset permissions and reload page to continue.";
         } else {
           console.log('No active subscription found.');
         }
