@@ -1,21 +1,21 @@
-self.addEventListener('push', function(e) {
-    console.log(e)
-
-    var options = {
-        body: JSON.stringify(e),
-        icon: 'images/example.png',
-        vibrate: [100, 50, 100],
-        data: {
-            dateOfArrival: Date.now(),
-            primaryKey: '2',
-        },
-        actions: [
-            { action: 'explore', title: 'Explore this new world', icon: 'images/checkmark.png' },
-            { action: 'close', title: 'Close', icon: 'images/xmark.png' }
-        ]
+self.addEventListener('push', function(event) {
+    let data = {};
+  
+    if (event.data) {
+      try {
+        data = event.data.json();
+      } catch (e) {
+        data = { text: event.data.text() };
+      }
+    }
+  
+    const options = {
+      body: data.text || 'Default body text',
+      icon: 'path/to/icon.png', 
+      badge: 'path/to/badge.png'
     };
-
-    e.waitUntil(
-        self.registration.showNotification(JSON.stringify(e), options)
+  
+    event.waitUntil(
+      self.registration.showNotification('Notification Title', options)
     );
-})
+  });
