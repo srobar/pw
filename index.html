@@ -22,7 +22,7 @@
         console.log(push);
 
         try {
-          await navigator.clipboard.writeText(JSON.stringify({ endpoint: push.endpoint, p256dh: push.keys.p256dh, auth: push.keys.auth }));
+          await navigator.clipboard.writeText(JSON.stringify(push));
           console.log('Push subscription copied to clipboard!');
         } catch (err) {
           console.error('Failed to copy to clipboard:', err);
