@@ -8,7 +8,9 @@
   </head>
   <body>
     <button onclick="subscribe()">Subscribe</button>
+    <button onclick="unsubscribe()">Unsubscribe and Remove Service Worker</button>
     <div id="endpoint"></div>
+    
     <script>
       async function subscribe() {
         let sw = await navigator.serviceWorker.ready;
@@ -22,10 +24,42 @@
         console.log(JSON.stringify(push));
       }
 
+      async function unsubscribe() {
+        let sw = await navigator.serviceWorker.ready;
+
+        let subscription = await sw.pushManager.getSubscription();
+        if (subscription) {
+          await subscription.unsubscribe();
+          console.log('Successfully unsubscribed from push notifications.');
+        } else {
+          console.log('No active subscription found.');
+        }
+
+        let registrations = await navigator.serviceWorker.getRegistrations();
+        for (let registration of registrations) {
+          await registration.unregister();
+          console.log('Service worker unregistered:', registration);
+        }
+
+        let cacheNames = await caches.keys();
+        for (let cacheName of cacheNames) {
+          await caches.delete(cacheName);
+          console.log('Cache deleted:', cacheName);
+        }
+
+        let databases = await indexedDB.databases();
+        for (let db of databases) {
+          await indexedDB.deleteDatabase(db.name);
+          console.log('IndexedDB deleted:', db.name);
+        }
+
+        document.getElementById('endpoint').textContent = 'Unsubscribed and Service Worker removed.';
+      }
+
       if ('serviceWorker' in navigator) {
         addEventListener('load', async () => {
           let sw = await navigator.serviceWorker.register('./sw.js');
-          console.log(sw);
+          console.log('Service worker registered:', sw);
         });
       }
     </script>
